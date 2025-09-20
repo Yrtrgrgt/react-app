@@ -4,63 +4,155 @@
 import React, { useEffect, useRef, useState } from "react";
 import { motion, LayoutGroup } from "framer-motion";
 
-const CATEGORIES = ["All", "Websites", "Apps", "Video Editing", "SEO Projects"];
+const CATEGORIES = ["All", "Websites", "Thumbnail", "Video Editing", "SEO Projects"];
 
 const SAMPLE_PROJECTS = [
   {
     id: 1,
     category: "Video Editing",
-    title: "Brand Promo — Epic Cut",
+    title: "Loan company promo — USA",
     type: "video",
-    video: "/media/promo1.mp4",
+    video: "/media/vid/vid1.mp4",
     poster: "/media/promo1-poster.jpg",
-    desc: "60s promotional film — color grade & cuts",
+    desc: "promotional reel",
   },
   {
     id: 2,
     category: "Websites",
-    title: "E-Commerce Platform",
+    title: "Real Estate website",
     type: "website",
-    img: "/media/site-ecom.jpg",
-    url: "https://example.com",
-    desc: "Custom storefront & checkout flow",
+    img: "/media/web1.png",
+    url: "https://nibutherealtor.com",
+    desc: "For new york, usa client",
   },
+    {
+     id: 17,
+    category: "Websites",
+    title: "E-book website",
+    type: "website",
+    img: "/media/web3.png",
+    url: "https://moneymindx.netlify.app/",
+    desc: "Book store",
+  },
+ 
   {
-    id: 3,
-    category: "Apps",
-    title: "Analytics App",
-    type: "image",
-    img: "/media/app-analytics.jpg",
-    url: "#",
-    desc: "Realtime charts & dashboards",
+    id: 15,
+    category: "Video Editing",
+    title: "short edit — Italy",
+    type: "video",
+    video: "/media/vid/vid2.mp4",
+    poster: "/media/promo1-poster.jpg",
+    desc: "promotional reel",
   },
   {
     id: 4,
     category: "SEO Projects",
-    title: "Retail SEO Boost",
+    title: "100 score in seo",
     type: "image",
-    img: "/media/seo-retail.jpg",
+    img: "/media/seo.png",
     url: "#",
     desc: "Keyword & content lift",
   },
   {
     id: 5,
     category: "Websites",
-    title: "SaaS Landing",
+    title: "Astrologer website",
     type: "website",
-    img: "/media/site-saas.jpg",
-    url: "https://example.com/saas",
-    desc: "Conversion-optimized landing & pricing",
+    img: "/media/web2.png",
+    url: "https://www.accuratefortuneastrology.com/",
+    desc: "Astro web for haryana client",
+  },
+  {
+    id: 16,
+    category: "Video Editing",
+    title: "sample edit — ankit arora",
+    type: "video",
+    video: "/media/vid/vid3.mp4",
+    poster: "/media/promo1-poster.jpg",
+    desc: "reel",
   },
   {
     id: 6,
-    category: "Apps",
-    title: "Mobile Commerce",
+    category: "Thumbnail",
+    title: "Thumbnail",
     type: "image",
-    img: "/media/app-commerce.jpg",
+    img: "/media/thumbnail2.jpg",
     url: "#",
-    desc: "Fast checkout UX",
   },
+  {
+    id: 7,
+    category: "Thumbnail",
+    title: "Thumbnail",
+    type: "image",
+    img: "/media/thumbnail3.jpg",
+    url: "#",
+  },
+
+  {
+    id: 8,
+    category: "Thumbnail",
+    title: "Thumbnail",
+    type: "image",
+    img: "/media/thumbnail4.jpg",
+    url: "#",
+  },
+  {
+    id: 9,
+    category: "Thumbnail",
+    title: "Thumbnail",
+    type: "image",
+    img: "/media/thumbnail5.jpg",
+    url: "#",
+  },
+  {
+    id: 10,
+    category: "Thumbnail",
+    title: "Thumbnail",
+    type: "image",
+    img: "/media/thumbnail6.jpg",
+    url: "#",
+  },
+  {
+    id: 11,
+    category: "Thumbnail",
+    title: "Thumbnail",
+    type: "image",
+    img: "/media/thumbnail7.jpg",
+    url: "#",
+  },
+  {
+    id: 12,
+    category: "Thumbnail",
+    title: "Thumbnail",
+    type: "image",
+    img: "/media/thumbnail8.jpg",
+    url: "#",
+  },
+  {
+    id: 13,
+    category: "Thumbnail",
+    title: "Thumbnail",
+    type: "image",
+    img: "/media/thumbnail9.jpg",
+    url: "#",
+  },
+  {
+    id: 14,
+    category: "Thumbnail",
+    title: "Thumbnail",
+    type: "image",
+    img: "/media/thumbnail10.jpg",
+    url: "#",
+  },
+   {
+    id: 3,
+    category: "Thumbnail",
+    title: "Thumbnail",
+    type: "image",
+    img: "/media/thumbnail.jpg",
+    url: "#",
+  },
+
 ];
 
 export default function ShowcaseSection() {
@@ -187,7 +279,7 @@ export default function ShowcaseSection() {
   );
 }
 
-/* 🔹 Project Card (unchanged) */
+/* 🔹 Project Card */
 function ProjectCard({
   project,
   largeWebsite = false,
@@ -257,7 +349,13 @@ function ProjectCard({
       {/* Media */}
       <div
         className={`relative w-full ${
-          project.type === "website" ? "h-72 sm:h-80 md:h-96" : "h-56 sm:h-60 md:h-72"
+          project.category === "Thumbnail"
+            ? "aspect-video" // Thumbnail fixed 16:9
+            : project.category === "Video Editing"
+            ? "aspect-[9/16]" // 9:16 ratio
+            : project.type === "website"
+            ? "h-72 sm:h-80 md:h-96"
+            : "h-56 sm:h-60 md:h-72"
         }`}
       >
         {project.type === "video" ? (
@@ -280,33 +378,32 @@ function ProjectCard({
 
         {/* Overlay */}
         <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-4">
-          <div className="bg-black/50 backdrop-blur-sm px-3 py-2 rounded-md text-left">
+          <div className="bg-black/50 backdrop-blur-sm px-3 py-2 rounded-md text-left w-fit">
             <div className="text-sm md:text-base font-semibold text-white">
-              {project.title}
+              {project.category === "Thumbnail" ? "Thumbnail" : project.title}
             </div>
             <div className="text-xs text-gray-300/80">{project.desc}</div>
           </div>
 
+          {/* ✅ Visit Button for Websites only */}
           {project.type === "website" && project.url && (
             <a
               href={project.url}
               target="_blank"
               rel="noreferrer"
               className="ml-auto inline-flex items-center gap-2 px-3 py-2 rounded-lg 
-                bg-blue-500/80 text-white text-sm font-medium shadow-md hover:scale-[1.03] transition"
+                bg-blue-500/80 text-white text-sm font-medium shadow-md hover:scale-[1.05] transition"
             >
-              Visit
+              Visit →
             </a>
           )}
         </div>
       </div>
 
       {/* Footer */}
-      <div className="px-4 py-4">
-        <div className="flex items-center justify-between text-xs text-gray-400">
-          <span>{project.category}</span>
-          <span>View →</span>
-        </div>
+      <div className="px-4 py-3 flex items-center justify-between text-xs text-gray-400">
+        <span>{project.category}</span>
+        <span>View →</span>
       </div>
     </motion.div>
   );
